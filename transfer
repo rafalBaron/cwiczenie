@@ -1,0 +1,49 @@
+	main.cpp
+	
+#include <iostream>
+#include "utils.h"
+
+
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <number>" << std::endl;
+        return 1;
+    }
+
+
+    int N = std::atoi(argv[1]);
+    int sum = calculate_sum(N);
+
+
+    std::cout << "Sum of numbers from 1 to " << N << " is: " << sum << std::endl;
+
+
+    return 0;
+}
+
+
+
+	utils.cpp
+	
+#include "utils.h"
+
+
+int calculate_sum(int N) {
+    int sum = 0;
+    for (int i = 1; i <= N; ++i) {
+        sum += i;
+    }
+    return sum;
+}
+
+
+	utils.h
+
+#ifndef UTILS_H
+#define UTILS_H
+
+
+int calculate_sum(int N);
+
+
+#endif
