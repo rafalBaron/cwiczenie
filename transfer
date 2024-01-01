@@ -1,49 +1,19 @@
-	main.cpp
-	
-#include <iostream>
-#include "utils.h"
+# Makefile
 
 
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <number>" << std::endl;
-        return 1;
-    }
+CC = g++   # Kompilator
+CFLAGS = -Wall -std=c++11  # Opcje kompilacji
 
 
-    int N = std::atoi(argv[1]);
-    int sum = calculate_sum(N);
+TARGET = sum_numbers  # Nazwa docelowego pliku wykonywalnego
 
 
-    std::cout << "Sum of numbers from 1 to " << N << " is: " << sum << std::endl;
+all: $(TARGET)
 
 
-    return 0;
-}
+$(TARGET): main.cpp utils.cpp utils.h
+    $(CC) $(CFLAGS) -o $(TARGET) main.cpp utils.cpp
 
 
-
-	utils.cpp
-	
-#include "utils.h"
-
-
-int calculate_sum(int N) {
-    int sum = 0;
-    for (int i = 1; i <= N; ++i) {
-        sum += i;
-    }
-    return sum;
-}
-
-
-	utils.h
-
-#ifndef UTILS_H
-#define UTILS_H
-
-
-int calculate_sum(int N);
-
-
-#endif
+clean:
+    rm -f $(TARGET)
